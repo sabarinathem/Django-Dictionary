@@ -1,0 +1,1 @@
+web: gunicorn language_converter.wsgi --log-file -
