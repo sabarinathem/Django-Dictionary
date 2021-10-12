@@ -93,7 +93,7 @@ def image_text_translation(request):
                 
         
             img = PIL.Image.open(image)
-                
+            pyt.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
             text=pyt.image_to_string(img,lang=src)
             text=text.replace("\n",' ')
 
