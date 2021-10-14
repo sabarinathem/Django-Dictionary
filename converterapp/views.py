@@ -5,12 +5,18 @@ from googletrans import Translator
 import googletrans
 from gtts import gTTS
 from playsound import playsound
-
+import os
 # from pygame import mixer
 import time
 # from pydub import AudioSegment
 import pytesseract as pyt
 from PIL import Image
+import pyttsx3
+
+engine=pyttsx3.init()
+rate = engine.getProperty('rate')   # getting details of current speaking rate
+engine.setProperty('rate', 75)
+
 
 # from converterapp.models import Image
 # Create your views here.
@@ -38,8 +44,8 @@ def HearByVoice(request):
         language=request.POST["lang"]
         print(language)
         ts=gTTS(word,lang=language,slow=False)
-        ts.save("voice.mp3")
-        playsound("voice.mp3")
+        engine.say(word)
+        engine.runAndWait()
         # AudioSegment.from_mp3("voice.mp3").export('voice.ogg', format='ogg')
         # mixer.init() #Initialzing pyamge mixer
 
