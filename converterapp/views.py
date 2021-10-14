@@ -6,9 +6,9 @@ import googletrans
 from gtts import gTTS
 from playsound import playsound
 
-from pygame import mixer
+# from pygame import mixer
 import time
-from pydub import AudioSegment
+# from pydub import AudioSegment
 import pytesseract as pyt
 from PIL import Image
 
@@ -39,12 +39,13 @@ def HearByVoice(request):
         print(language)
         ts=gTTS(word,lang=language,slow=False)
         ts.save("voice.mp3")
-        AudioSegment.from_mp3("voice.mp3").export('voice.ogg', format='ogg')
-        mixer.init() #Initialzing pyamge mixer
+        playsound("voice.mp3")
+        # AudioSegment.from_mp3("voice.mp3").export('voice.ogg', format='ogg')
+        # mixer.init() #Initialzing pyamge mixer
 
-        mixer.music.load('voice.ogg') #Loading Music File
+        # mixer.music.load('voice.ogg') #Loading Music File
 
-        mixer.music.play() #Playing Music with Pygame
+        # mixer.music.play() #Playing Music with Pygame
 
             
 
