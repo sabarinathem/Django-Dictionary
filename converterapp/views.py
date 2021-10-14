@@ -5,7 +5,7 @@ from googletrans import Translator
 import googletrans
 from gtts import gTTS
 from playsound import playsound
-import vlc
+from converterapp import vlc
 # from pygame import mixer
 import time
 # from pydub import AudioSegment
