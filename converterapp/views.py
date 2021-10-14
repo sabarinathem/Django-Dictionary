@@ -32,27 +32,26 @@ def index(request):
         return HttpResponse('No internet, Please try to connect Internet')
     return render(request,'converterapp/index.html')
 def HearByVoice(request):
-    try:
-        if request.method=="POST":
-            word=request.POST["word"]
-            language=request.POST["lang"]
-            print(language)
-            ts=gTTS(word,lang=language,slow=False)
-            ts.save("voice.mp3")
-            AudioSegment.from_mp3("voice.mp3").export('voice.ogg', format='ogg')
-            mixer.init() #Initialzing pyamge mixer
+  
+    if request.method=="POST":
+        word=request.POST["word"]
+        language=request.POST["lang"]
+        print(language)
+        ts=gTTS(word,lang=language,slow=False)
+        ts.save("voice.mp3")
+        AudioSegment.from_mp3("voice.mp3").export('voice.ogg', format='ogg')
+        mixer.init() #Initialzing pyamge mixer
 
-            mixer.music.load('voice.ogg') #Loading Music File
+        mixer.music.load('voice.ogg') #Loading Music File
 
-            mixer.music.play() #Playing Music with Pygame
+        mixer.music.play() #Playing Music with Pygame
 
             
 
 
             # mixer.music.stop()
-            return render(request,'converterapp/convert.html',{'convert':word,'lang':language})
-    except:
-        return HttpResponse('No internet, Please try to connect Internet')
+        return render(request,'converterapp/convert.html',{'convert':word,'lang':language})
+  
 def stopvoice(request):
     try:
         mixer.music.stop()
