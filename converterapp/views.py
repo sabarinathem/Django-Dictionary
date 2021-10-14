@@ -44,8 +44,7 @@ def HearByVoice(request):
         language=request.POST["lang"]
         print(language)
         ts=gTTS(word,lang=language,slow=False)
-        engine.say(word)
-        engine.runAndWait()
+       
         # AudioSegment.from_mp3("voice.mp3").export('voice.ogg', format='ogg')
         # mixer.init() #Initialzing pyamge mixer
 
