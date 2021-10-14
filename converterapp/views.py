@@ -69,36 +69,33 @@ def lang_convert_from_image(request):
     return render(request,'converterapp/convert_from_image.html')
 
 def image_text_translation(request):
-    try:
-        import PIL.Image
-        if request.method=="POST":
-            #Image database
-            # img=Image()
-            
-            
-            # image=request.["image"]
-            if len(request.FILES)!=0:
-                image=request.FILES["image"]
+    import PIL.Image
+    if request.method=="POST":
+        #Image database
+        # img=Image()
+        # image=request.["image"]
+        if len(request.FILES)!=0:
+            image=request.FILES["image"]
                     
             # img.pimage=image
             # img.save()
             
-            src=request.POST["pytname"]
-            dest=request.POST["googletransname"]
+         src=request.POST["pytname"]
+         dest=request.POST["googletransname"]
                 
         
-            img = PIL.Image.open(image)
-            pyt.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
-            text=pyt.image_to_string(img,lang=src)
-            text=text.replace("\n",' ')
+         img = PIL.Image.open(image)
+         pyt.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
+         text=pyt.image_to_string(img,lang=src)
+         text=text.replace("\n",' ')
 
-            translator=Translator()
-            translate=translator.translate(text,dest=dest)
-            trans_text=translate.text
-            context={'convert':trans_text,'lang':dest}
-            return render(request,'converterapp/convert.html',context)
-    except:
-         return HttpResponse('No internet, Please try to connect Internet')
+         translator=Translator()
+         translate=translator.translate(text,dest=dest)
+         trans_text=translate.text
+         context={'convert':trans_text,'lang':dest}
+         return render(request,'converterapp/convert.html',context)
+#     except:
+#          return HttpResponse('No internet, Please try to connect Internet')
    
         
        
