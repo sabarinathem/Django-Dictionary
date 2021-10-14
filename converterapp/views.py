@@ -5,13 +5,13 @@ from googletrans import Translator
 import googletrans
 from gtts import gTTS
 from playsound import playsound
-from tkinter.filedialog import askopenfilename
+
 from pygame import mixer
 import time
 from pydub import AudioSegment
 import pytesseract as pyt
 from PIL import Image
-from tkinter import *
+
 # from converterapp.models import Image
 # Create your views here.
 def startpage(request):
@@ -65,12 +65,7 @@ def stopvoice(request):
         return HttpResponse('No internet, Please try to connect Internet')
 def lang_convert_from_image(request):
     
-    # root = Tk()
-    # root.withdraw()
-        
-    # files=askopenfilename()
-    # context={'files':files}
-    # root.destroy()
+    
     return render(request,'converterapp/convert_from_image.html')
 
 def image_text_translation(request):
