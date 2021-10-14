@@ -5,17 +5,13 @@ from googletrans import Translator
 import googletrans
 from gtts import gTTS
 from playsound import playsound
-import os
+
 # from pygame import mixer
 import time
 # from pydub import AudioSegment
 import pytesseract as pyt
 from PIL import Image
-import pyttsx3
 
-engine=pyttsx3.init()
-rate = engine.getProperty('rate')   # getting details of current speaking rate
-engine.setProperty('rate', 75)
 
 
 # from converterapp.models import Image
