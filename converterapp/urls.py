@@ -1,5 +1,4 @@
 from os import name
-from tkinter import mainloop
 from django.urls import path
 from converterapp import views
 urlpatterns=[
