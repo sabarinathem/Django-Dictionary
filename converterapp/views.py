@@ -5,7 +5,7 @@ from googletrans import Translator
 import googletrans
 from gtts import gTTS
 from playsound import playsound
-
+import vlc
 # from pygame import mixer
 import time
 # from pydub import AudioSegment
@@ -40,6 +40,10 @@ def HearByVoice(request):
         language=request.POST["lang"]
         print(language)
         ts=gTTS(word,lang=language,slow=False)
+        ts.save("voice.mp3")
+        global p
+        p = vlc.MediaPlayer("voice.mp3")
+        p.play()
        
         # AudioSegment.from_mp3("voice.mp3").export('voice.ogg', format='ogg')
         # mixer.init() #Initialzing pyamge mixer
@@ -56,7 +60,7 @@ def HearByVoice(request):
   
 def stopvoice(request):
     try:
-        mixer.music.stop()
+        p.stop()
         if request.method=="POST":
             convert=request.POST["word"]
             language=request.POST["lang"]
