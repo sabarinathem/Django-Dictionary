@@ -11,7 +11,10 @@ import time
 # from pydub import AudioSegment
 import pytesseract as pyt
 from PIL import Image
+# import pyttsx3
 
+# engine=pyttsx3.init()
+# engine.runAndWait()
 
 
 # from converterapp.models import Image
