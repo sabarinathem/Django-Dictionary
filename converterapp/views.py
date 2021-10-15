@@ -31,46 +31,48 @@ def index(request):
             translate=translator.translate(word,dest=language)
             trans_text=translate.text
             context={'convert':trans_text,'lang':language}
+            ts=gTTS(trans_text,lang=language,slow=False)
+            ts.save("converterapp/static/voice.mp3")
         
             return render(request,'converterapp/convert.html',context)
     except:
         return HttpResponse('No internet, Please try to connect Internet')
     return render(request,'converterapp/index.html')
-def HearByVoice(request):
+# def HearByVoice(request):
   
-    if request.method=="POST":
-        word=request.POST["word"]
-        language=request.POST["lang"]
-        print(language)
-        ts=gTTS(word,lang=language,slow=False)
-        ts.save("voice.mp3")
-        global p
-        p = vlc.MediaPlayer("voice.mp3")
-        p.play()
+#     if request.method=="POST":
+#         word=request.POST["word"]
+#         language=request.POST["lang"]
+#         print(language)
+#         ts=gTTS(word,lang=language,slow=False)
+#         ts.save("voice.mp3")
+#         # global p
+#         # p = vlc.MediaPlayer("voice.mp3")
+#         # p.play()
        
-        # AudioSegment.from_mp3("voice.mp3").export('voice.ogg', format='ogg')
-        # mixer.init() #Initialzing pyamge mixer
+#         # AudioSegment.from_mp3("voice.mp3").export('voice.ogg', format='ogg')
+#         # mixer.init() #Initialzing pyamge mixer
 
-        # mixer.music.load('voice.ogg') #Loading Music File
+#         # mixer.music.load('voice.ogg') #Loading Music File
 
-        # mixer.music.play() #Playing Music with Pygame
+#         # mixer.music.play() #Playing Music with Pygame
 
             
 
 
-            # mixer.music.stop()
-        return render(request,'converterapp/convert.html',{'convert':word,'lang':language})
+#             # mixer.music.stop()
+#         return render(request,'converterapp/convert.html',{'convert':word,'lang':language})
   
-def stopvoice(request):
-    try:
-        p.stop()
-        if request.method=="POST":
-            convert=request.POST["word"]
-            language=request.POST["lang"]
-            # return HttpResponse(language)
-            return render(request,'converterapp/convert.html',{'convert':convert,'lang':language})
-    except:
-        return HttpResponse('No internet, Please try to connect Internet')
+# def stopvoice(request):
+#     try:
+        
+#         if request.method=="POST":
+#             convert=request.POST["word"]
+#             language=request.POST["lang"]
+#             # return HttpResponse(language)
+#             return render(request,'converterapp/convert.html',{'convert':convert,'lang':language})
+#     except:
+#         return HttpResponse('No internet, Please try to connect Internet')
 def lang_convert_from_image(request):
     
    

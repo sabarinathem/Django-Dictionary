@@ -1,2 +1,41 @@
 
 
+{% extends 'converterapp/main.html'%}
+{% load static %}
+
+{% block content %}
+
+
+<body style="background-color:#202C45 ;">
+    <br>
+    <br>
+    <audio id="myAudio">
+      
+        <source src="{% static 'voice.mp3' %}" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      
+      <p>Click the buttons to play or pause the audio.</p>
+      
+      <button class="btn btn-custom" onclick="playAudio()" type="button">Play Audio</button>
+      <button class="btn btn-custom" onclick="pauseAudio()" type="button">Pause Audio</button> 
+      
+      <script>
+      var x = document.getElementById("myAudio"); 
+      
+      function playAudio() { 
+        x.play(); 
+      } 
+      
+      function pauseAudio() { 
+        x.pause(); 
+      } 
+      </script>
+
+        <a class="btn btn-custom" href="{% url 'index' %}">goto dictionay</a> 
+            
+<br><br>
+<p style="color: white; font-size: 20px;font-family: Georgia;">{{convert}}</p>
+
+</body>
+{% endblock content %}
