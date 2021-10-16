@@ -26,8 +26,25 @@ def startpage(request):
 
 def index(request):
     # try:
+
+
+
+    import os, shutil
+    folder = 'media/audio'
+    for filename in os.listdir(folder):
+        file_path = os.path.join(folder, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+        except Exception as e:
+            print('Failed to delete %s. Reason: %s' % (file_path, e))
+    # return HttpResponse('delete the audio files')
+
     if request.method=="POST":
         a=Audio()
+        Audio.objects.all().delete()
         word=request.POST["word"]
         language=request.POST["lang"]
         translator=Translator()
@@ -105,7 +122,7 @@ def image_text_translation(request):
                     
             # img.pimage=image
             # img.save()
-            
+        a=Audio()    
         src=request.POST["pytname"]
         dest=request.POST["googletransname"]
                 
@@ -118,7 +135,18 @@ def image_text_translation(request):
         translator=Translator()
         translate=translator.translate(text,dest=dest)
         trans_text=translate.text
-        context={'convert':trans_text,'lang':dest}
+        ts=gTTS(trans_text,lang=dest,slow=False)
+        ts.save("voice.mp3")
+        file=File(open('voice.mp3','rb'))
+       
+        a.audio=file
+        a.save()
+
+        audio=Audio.objects.raw('select * from converterapp_audio where id=(SELECT MAX(id) FROM converterapp_audio)')
+         
+        context={'convert':trans_text,'lang':dest,'item':audio}   
+
+        
         return render(request,'converterapp/convert.html',context)
     # except:
     #      return HttpResponse('No internet, Please try to connect Internet')

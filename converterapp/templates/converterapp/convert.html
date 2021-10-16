@@ -14,11 +14,11 @@
     <audio id="myAudio">
      {% for i in item %}
         <source src="{{i.audio.url}}" type="audio/mp3">
-        Your browser does not support the audio element.
+       
       {% endfor %}
       </audio>
       
-      <p>Click the buttons to play or pause the audio.</p>
+     
       
       <button class="btn btn-custom" onclick="playAudio()" type="button">Play Audio</button>
       <button class="btn btn-custom" onclick="pauseAudio()" type="button">Pause Audio</button> 
