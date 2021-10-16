@@ -1,5 +1,5 @@
 from django.contrib import admin
-# from converterapp.models import Image
-# # Register your models here.
+from converterapp.models import Audio
+# Register your models here.
 
-# admin.site.register(Image)
+admin.site.register(Audio)

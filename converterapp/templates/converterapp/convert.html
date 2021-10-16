@@ -3,16 +3,19 @@
 {% extends 'converterapp/main.html'%}
 {% load static %}
 
+
 {% block content %}
 
 
 <body style="background-color:#202C45 ;">
     <br>
     <br>
+    
     <audio id="myAudio">
-      
-        <source src="{% static 'voice.mp3' %}" type="audio/mpeg">
+     {% for i in item %}
+        <source src="{{i.audio.url}}" type="audio/mp3">
         Your browser does not support the audio element.
+      {% endfor %}
       </audio>
       
       <p>Click the buttons to play or pause the audio.</p>
@@ -36,6 +39,6 @@
             
 <br><br>
 <p style="color: white; font-size: 20px;font-family: Georgia;">{{convert}}</p>
-
+<h1 style="color: white; font-size: 20px;font-family: Georgia;">{{audio.audio}}</h1>
 </body>
 {% endblock content %}

@@ -11,6 +11,8 @@ import time
 # from pydub import AudioSegment
 import pytesseract as pyt
 from PIL import Image
+from converterapp.models import Audio
+from django.core.files import File
 # import pyttsx3
 
 # engine=pyttsx3.init()
@@ -23,20 +25,31 @@ def startpage(request):
     return render(request,'converterapp/startpage.html')
 
 def index(request):
-    try:
-        if request.method=="POST":
-            word=request.POST["word"]
-            language=request.POST["lang"]
-            translator=Translator()
-            translate=translator.translate(word,dest=language)
-            trans_text=translate.text
-            context={'convert':trans_text,'lang':language}
-            ts=gTTS(trans_text,lang=language,slow=False)
-            ts.save("converterapp/static/voice.mp3")
+    # try:
+    if request.method=="POST":
+        a=Audio()
+        word=request.POST["word"]
+        language=request.POST["lang"]
+        translator=Translator()
+        translate=translator.translate(word,dest=language)
+        trans_text=translate.text
         
-            return render(request,'converterapp/convert.html',context)
-    except:
-        return HttpResponse('No internet, Please try to connect Internet')
+        ts=gTTS(trans_text,lang=language,slow=False)
+        ts.save("voice.mp3")
+        file=File(open('voice.mp3','rb'))
+       
+        a.audio=file
+        a.save()
+
+        audio=Audio.objects.raw('select * from converterapp_audio where id=(SELECT MAX(id) FROM converterapp_audio)')
+         
+        context={'convert':trans_text,'lang':language,'item':audio}   
+
+        
+        return render(request,'converterapp/convert.html',context)
+    # except:
+    #     return HttpResponse('No internet, Please try to connect Internet')
+    
     return render(request,'converterapp/index.html')
 # def HearByVoice(request):
   
