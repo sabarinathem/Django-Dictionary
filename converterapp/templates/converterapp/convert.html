@@ -20,7 +20,7 @@
       
      
       
-      <button class="btn btn-custom" onclick="playAudio()" type="button">Play Audio</button>
+     &emsp; <button class="btn btn-custom" onclick="playAudio()" type="button">Play Audio</button>
       <button class="btn btn-custom" onclick="pauseAudio()" type="button">Pause Audio</button> 
       
       <script>
@@ -35,10 +35,11 @@
       } 
       </script>
 
-        <a class="btn btn-custom" href="{% url 'index' %}">goto dictionay</a> 
+        <!-- <a class="btn btn-custom" href="{% url 'index' %}">goto dictionay</a>  -->
             
 <br><br>
-<p style="color: white; font-size: 20px;font-family: Georgia;">{{convert}}</p>
-<h1 style="color: white; font-size: 20px;font-family: Georgia;">{{audio.audio}}</h1>
+ <p style="color: white; font-size: 20px;font-family: Georgia;">&emsp; {{convert}}</p><br>
+&emsp; <a class="btn btn-custom" href="{% url 'index' %}">Dictionay</a> 
+<!-- <h1 style="color: white; font-size: 20px;font-family: Georgia;">{{audio.audio}}</h1> -->
 </body>
 {% endblock content %}

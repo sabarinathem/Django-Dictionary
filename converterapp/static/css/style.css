@@ -148,7 +148,7 @@ a:focus {
 /**********************************/
 .top-bar {
     position: relative;
-    height: 75px;
+    height: 105px;
     display: flex;
     align-items: center;
     background: #ffffff;
@@ -165,7 +165,7 @@ a:focus {
 .top-bar .logo h1 {
     margin: -4px 0 0 0;
     color: #E81C2E;
-    font-size: 40px;
+    font-size: 30px;
     line-height: 50px;
     font-weight: 800;
     letter-spacing: 1px;
